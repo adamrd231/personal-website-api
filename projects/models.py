@@ -22,6 +22,7 @@ class Categories(models.Model):
 
     def __str__(self):
         return self.name
+            
 
 # Projects model to display on portfolio section
 class Projects(models.Model):

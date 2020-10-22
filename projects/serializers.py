@@ -10,10 +10,10 @@ class PhotoSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
-        fields = ['id', 'title', 'description', 'technology', 'image']
+        fields = ['id', 'category', 'title', 'description', 'technology', 'image']
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
-        fields = ['id', 'title']
+        fields = ['id', 'name']
