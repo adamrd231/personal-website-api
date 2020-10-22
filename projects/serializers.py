@@ -1,5 +1,5 @@
 from rest_framework import serializers;
-from .models import Projects, Photos
+from .models import Projects, Photos, Categories
 from django.contrib.auth.models import User
 
 class PhotoSerializer(serializers.ModelSerializer):
@@ -11,3 +11,9 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
         fields = ['id', 'title', 'description', 'technology', 'image']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categories
+        fields = ['id', 'title']
