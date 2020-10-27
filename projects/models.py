@@ -31,6 +31,9 @@ class Projects(models.Model):
     description = models.TextField()
     technology = models.CharField(max_length=20)
     image = models.ManyToManyField(Photos, related_name='photos', blank=True)
+    
+    def image_url(self): 
+        return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
 
     class Meta:
         verbose_name_plural = "Projects"    
