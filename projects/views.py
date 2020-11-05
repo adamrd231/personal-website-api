@@ -3,8 +3,8 @@ from rest_framework import viewsets;
 from rest_framework import viewsets;
 from rest_framework.response import Response;
 
-from .serializers import ProjectSerializer, PhotoSerializer, CategorySerializer
-from .models import Projects, Photos, Categories;
+from .serializers import ProjectSerializer, PhotoSerializer, CategorySerializer, BlogSerializer, QuoteSerializer;
+from .models import Projects, Photos, Categories, Blog, Quotes;
 
 # Create your views here.
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -18,3 +18,11 @@ class PhotoViewSet(viewsets.ModelViewSet):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategorySerializer
+
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+class QuoteViewSet(viewsets.ModelViewSet):
+    queryset = Quotes.objects.all()
+    serializer_class = QuoteSerializer

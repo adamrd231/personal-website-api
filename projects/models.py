@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here
 class Photos(models.Model):
@@ -23,23 +24,72 @@ class Categories(models.Model):
     def __str__(self):
         return self.name
 
+class Quotes(models.Model):
+    quote = models.TextField()
+    quote_author = models.CharField(max_length=100)
 
-# Projects model to display on portfolio section
+    class Meta:
+        verbose_name_plural = "Quotes"
+
+
+# Projects model to display on portfolio section, images will be served and a single-page template will display the work. 
 class Projects(models.Model):
+    #Basic information about project, used to display information on project templates.
     title = models.CharField(max_length=100)
-    category = models.ForeignKey('Categories', related_name="categories", on_delete=models.CASCADE, blank=True, null=True)
+    tagline = models.CharField(max_length=250, blank=True, null=True)
+    website = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField()
+
+    #Quotes attributed with the project
+    quotes = models.ManyToManyField(Quotes, related_name='quotes', blank=True, null=True)
+
+    # Category used to sort projects
+    category = models.ForeignKey('Categories', related_name="categories", on_delete=models.CASCADE, blank=True, null=True)
     technology = models.CharField(max_length=20)
+
+    #Image associated with project
+    # TODO Change to one to one relationship.
     image = models.ManyToManyField(Photos, related_name='photos', blank=True)
+    
+    # Gets the url address of the image associated with the project
+    def image_url(self): 
+        return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
+
+    # Formats the category from the id number to a string
+    def category_name(self):
+        return Categories.objects.filter(categories=self).values_list('name', flat=True)
+
+    # Formats the name displayed when viewing the Django Database
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Projects"    
+
+    
+
+
+        
+# Blog model to keep track of blog posts on the website. No images will be served with the blog posts.
+class Blog(models.Model):
+    #Basic information about project, used to display information on blog templates.
+    title = models.CharField(max_length=100)
+
+    #Slug and Categories used to sort and filter projects
+    slug = models.SlugField(max_length=200, unique=True)
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
+
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    blog = models.TextField()
     
     def image_url(self): 
         return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
 
-    def category_name(self):
-        return Categories.objects.filter(categories=self).values_list('name', flat=True)
-
     class Meta:
-        verbose_name_plural = "Projects"    
+        verbose_name_plural = "Blog"    
 
     def __str__(self):
         return self.title
