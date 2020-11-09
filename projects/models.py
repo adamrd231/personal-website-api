@@ -31,6 +31,9 @@ class Quotes(models.Model):
     class Meta:
         verbose_name_plural = "Quotes"
 
+    def __str__(self):
+        return self.quote_author
+
 
 # Projects model to display on portfolio section, images will be served and a single-page template will display the work. 
 class Projects(models.Model):
@@ -38,26 +41,27 @@ class Projects(models.Model):
     title = models.CharField(max_length=100)
     tagline = models.CharField(max_length=250, blank=True, null=True)
     website = models.CharField(max_length=100, blank=True, null=True)
+    website_button_text = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField()
+    technology = models.CharField(max_length=20)
 
     #Quotes attributed with the project
     quotes = models.ManyToManyField(Quotes, related_name='quotes', blank=True, null=True)
+    def quote_string(self):
+        return Quotes.objects.filter(quotes=self).values_list('quote', 'quote_author')
+
 
     # Category used to sort projects
     category = models.ForeignKey('Categories', related_name="categories", on_delete=models.CASCADE, blank=True, null=True)
-    technology = models.CharField(max_length=20)
+    def category_name(self):
+        return Categories.objects.filter(categories=self).values_list('name', flat=True)
 
     #Image associated with project
     # TODO Change to one to one relationship.
     image = models.ManyToManyField(Photos, related_name='photos', blank=True)
-    
-    # Gets the url address of the image associated with the project
     def image_url(self): 
         return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
 
-    # Formats the category from the id number to a string
-    def category_name(self):
-        return Categories.objects.filter(categories=self).values_list('name', flat=True)
 
     # Formats the name displayed when viewing the Django Database
     def __str__(self):

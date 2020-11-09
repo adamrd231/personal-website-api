@@ -20,7 +20,7 @@ class QuoteSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Projects
-        fields = ['id', 'category', 'category_name', 'website', 'title', 'description', 'technology', 'image', 'image_url']
+        fields = ['id', 'category', 'category_name', 'website', 'website_button_text', 'title', 'tagline', 'description', 'technology', 'quotes', 'quote_string', 'image', 'image_url']
 
 
 class CategorySerializer(serializers.ModelSerializer):
