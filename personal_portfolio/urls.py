@@ -22,8 +22,11 @@ from django.conf import settings
 # All of the allowable url locations
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('projects/', include('projects.urls')),    
+    path('projects/', include('projects.urls')),  
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Static locations for images
 urlpatterns += static(settings.PHOTO_URL, document_root=settings.PHOTO_ROOT)

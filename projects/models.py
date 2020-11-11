@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here
 class Photos(models.Model):
     image_name = models.TextField()
@@ -42,11 +43,11 @@ class Projects(models.Model):
     tagline = models.CharField(max_length=250, blank=True, null=True)
     website = models.CharField(max_length=100, blank=True, null=True)
     website_button_text = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField()
+    
     technology = models.CharField(max_length=20)
 
     #Quotes attributed with the project
-    quotes = models.ManyToManyField(Quotes, related_name='quotes', blank=True, null=True)
+    quotes = models.ManyToManyField(Quotes, related_name='quotes', blank=True)
     def quote_string(self):
         return Quotes.objects.filter(quotes=self).values_list('quote', 'quote_author')
 
@@ -62,6 +63,7 @@ class Projects(models.Model):
     def image_url(self): 
         return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
 
+    description = models.TextField()
 
     # Formats the name displayed when viewing the Django Database
     def __str__(self):

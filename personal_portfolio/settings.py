@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'projects',
     'corsheaders',
-
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -129,6 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-PHOTO_ROOT = os.path.join(BASE_DIR, 'photos')
 PHOTO_URL = '/photos/'
+PHOTO_ROOT = os.path.join(BASE_DIR, 'photos')
+
+

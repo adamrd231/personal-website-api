@@ -12,5 +12,6 @@ router.register('blog', BlogViewSet)
 router.register('quotes', QuoteViewSet)
 
 urlpatterns = [
-    path('', include(router.urls))
-]
+    path('', include(router.urls)),
+    path('summernote/', include('django_summernote.urls')),
+] 
