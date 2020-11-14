@@ -40,6 +40,7 @@ class Quotes(models.Model):
 class Projects(models.Model):
     #Basic information about project, used to display information on project templates.
     title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=200, default="", blank=True, null=True)
     tagline = models.CharField(max_length=250, blank=True, null=True)
     website = models.CharField(max_length=100, blank=True, null=True)
     website_button_text = models.CharField(max_length=100, blank=True, null=True)
