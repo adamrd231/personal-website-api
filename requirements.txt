@@ -1,3 +1,3 @@
 -r requirements-dev.txt
 gunicorn
-psychopg2
+psycopg2
