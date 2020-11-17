@@ -13,11 +13,11 @@ router.register('blog', BlogViewSet)
 router.register('quotes', QuoteViewSet)
 
 
+
+urlpatterns = [
+    path('', include(router.urls)),
     path('summernote/', include('django_summernote.urls')),
 ] 
 
 url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root':"path\to\your\static\folder"}),
-
-urlpatterns = [
-    path('', include(router.urls)),
 urlpatterns += staticfiles_urlpatterns()
