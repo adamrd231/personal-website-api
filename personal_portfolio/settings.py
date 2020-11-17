@@ -143,4 +143,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 PHOTO_URL = '/photos/'
 PHOTO_ROOT = os.path.join(BASE_DIR, 'photos')
 
-
+ADMIN_MEDIA_PREFIX = '/media/' 
