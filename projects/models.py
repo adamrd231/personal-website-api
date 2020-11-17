@@ -1,11 +1,26 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.template.defaultfilters import truncatechars
+from django.utils.safestring import mark_safe
 
 # Create your models here
 class Photos(models.Model):
     image_name = models.TextField()
-    project_image = models.ImageField(upload_to='photos/', blank=True)
+    project_image = models.ImageField(upload_to='photos/', null=True, blank=True)
+
+    @property
+    def short_description(self):
+        return truncatechars(self.description, 15)
+
+    def admin_photo(self):
+        print(self.project_image)
+        return mark_safe('<img src="{}", height="{height}", width="{width}" />'
+            .format("http://127.0.0.1:8000/" + str(self.project_image),
+            height=100,
+            width=100))
+        
+    admin_photo.short_description = "image_name"
+    admin_photo.allow_tags = True
 
     class Meta:
         verbose_name_plural = "Photos"    
@@ -63,6 +78,7 @@ class Projects(models.Model):
     image = models.ManyToManyField(Photos, related_name='photos', blank=True)
     def image_url(self): 
         return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
+
 
     description = models.TextField()
 
