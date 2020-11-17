@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['website-portfolio-rdconcepts.herokuapp.com']
+ALLOWED_HOSTS = ['website-portfolio-rdconcepts.herokuapp.com',]
 
 
 # Application definition
@@ -61,6 +61,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = [
     "https://localhost:8000",
     "http://localhost:3000",
+    "https://portfolio-website-72e0c.web.app",
 ]
 
 ROOT_URLCONF = 'personal_portfolio.urls'
