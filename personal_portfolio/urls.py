@@ -18,8 +18,6 @@ from django.urls import path
 from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
-import django.views.static
-from django.conf.urls import url
 
 # All of the allowable url locations
 urlpatterns = [
@@ -33,6 +31,3 @@ if settings.DEBUG:
 # Static locations for images
 urlpatterns += static(settings.PHOTO_URL, document_root=settings.PHOTO_ROOT)
 
-urlpatterns += [
-   url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': settings.DEBUG})
-]
