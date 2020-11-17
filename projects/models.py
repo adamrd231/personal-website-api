@@ -15,7 +15,7 @@ class Photos(models.Model):
     def admin_photo(self):
         print(self.project_image)
         return mark_safe('<img src="{}", height="{height}", width="{width}" />'
-            .format("https://website-portfolio-rdconcepts.herokuapp.com/" + str(self.project_image),
+            .format(str(self.project_image),
             height=100,
             width=100))
         
