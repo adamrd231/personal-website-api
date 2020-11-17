@@ -15,7 +15,7 @@ class Photos(models.Model):
     def admin_photo(self):
         print(self.project_image)
         return mark_safe('<img src="{}", height="{height}", width="{width}" />'
-            .format(str(self.project_image),
+            .format("http://127.0.0.1:8000/" + str(self.project_image),
             height=100,
             width=100))
         
