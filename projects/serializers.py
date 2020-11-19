@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photos
-        fields = ['id', 'image_name']
+        fields = ['id', 'image_name', 'project_image']
 
 
 class QuoteSerializer(serializers.ModelSerializer):

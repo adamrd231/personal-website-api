@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['website-portfolio-rdconcepts.herokuapp.com',]
+ALLOWED_HOSTS = ['website-portfolio-rdconcepts.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -141,6 +141,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-PHOTO_URL = '/photos/'
-PHOTO_ROOT = os.path.join(BASE_DIR, 'photos')
