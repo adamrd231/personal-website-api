@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 # Create your models here
 class Photos(models.Model):
     image_name = models.TextField()
-    project_image = models.ImageField(upload_to='photos/', null=True, blank=True)
+    project_image = models.ImageField(upload_to='static/', null=True, blank=True)
 
     @property
     def short_description(self):
