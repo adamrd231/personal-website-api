@@ -14,9 +14,10 @@ class PhotoAdmin(admin.ModelAdmin):
     fields = ('image_name', 'admin_photo', 'project_image')
 
     list_display = [
+        'image_name',
         'admin_photo',
         'project_image',
-        'image_name'
+        
     ]
 
     readonly_fields = ('admin_photo',)
