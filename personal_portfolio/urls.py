@@ -25,9 +25,3 @@ urlpatterns = [
     path('projects/', include('projects.urls')),  
 ]
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# # Static locations for images
-# urlpatterns += static(settings.PHOTO_URL, document_root=settings.PHOTO_ROOT)
-
