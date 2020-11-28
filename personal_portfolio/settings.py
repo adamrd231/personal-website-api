@@ -8,7 +8,17 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
+
+
+AWS S3 
+Username: portfolio-photo-user
+Access Key ID: AKIATWEBTZ37PECUATNE
+Secret Key Access: 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
 """
+
+
+# S3 Bucket Arn ID: arn:aws:s3:::portfolio-website-adamrd231
 
 from pathlib import Path
 import os
@@ -45,6 +55,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_summernote',
     'sorl.thumbnail',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -136,11 +147,29 @@ USE_L10N = True
 USE_TZ = True
 
 
+AWS_STORAGE_BUCKET_NAME = 'portfolio-website-adamrd231'
+AWS_S3_REGION_NAME = 'us-west-1'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'AKIATWEBTZ37PECUATNE'
+AWS_SECRET_ACCESS_KEY = 'ZK/4E8mKtICWVtUtIuEShvmHTw1Z5Jr9ASxavirx'
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
 PHOTO_URL = '/photos/'
 PHOTO_ROOT = os.path.join(BASE_DIR, 'photos')
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'

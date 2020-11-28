@@ -15,11 +15,11 @@ class Photos(models.Model):
     def admin_photo(self):
         print(self.project_image)
         return mark_safe('<img src="{}", height="{height}", width="{width}" />'
-            .format("http://127.0.0.1:8000/" + str(self.project_image),
+            .format("https://portfolio-website-adamrd231.s3-us-west-1.amazonaws.com/media/" + str(self.project_image),
             height=100,
             width=100))
         
-    admin_photo.short_description = "image_name"
+    admin_photo.short_description = "Quick View"
     admin_photo.allow_tags = True
 
     class Meta:
