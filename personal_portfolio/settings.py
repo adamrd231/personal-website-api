@@ -74,6 +74,8 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "https://portfolio-website-72e0c.web.app",
     "https://website-portfolio-rdconcepts.herokuapp.com",
+    "http://10.0.0.66:3000",
+    "https://rdconcepts.design",
 ]
 
 ROOT_URLCONF = 'personal_portfolio.urls'
