@@ -69,13 +69,15 @@ class Projects(models.Model):
 
 
     # Category used to sort projects
-    category = models.ForeignKey('Categories', related_name="categories", on_delete=models.CASCADE, blank=True, null=True)
+    # category = models.ForeignKey('Categories', related_name="categories", on_delete=models.CASCADE, blank=True, null=True)
+    category = models.ManyToManyField(Categories, related_name='categories', blank=True)
     def category_name(self):
         return Categories.objects.filter(categories=self).values_list('name', flat=True)
 
     #Image associated with project
     # TODO Change to one to one relationship.
-    image = models.ManyToManyField(Photos, related_name='photos', blank=True)
+    # image = models.ManyToManyField(Photos, related_name='photos', blank=True)
+    image = models.ForeignKey('Photos', related_name="photos", on_delete=models.CASCADE, blank=True, null=True)
     def image_url(self): 
         return Photos.objects.filter(photos=self).values_list('project_image', flat=True)
 
